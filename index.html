@@ -1,7 +1,49 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Move Button Example</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+      .container {
+        text-align: center;
+      }
+      button {
+        font-size: 16px;
+        padding: 10px 20px;
+        margin: 10px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
   <body>
-    <h1>Hello World</h1>
-    <p>I'm hosted with GitHub Pages.</p>
+    <div class="container">
+      <p>Can I be your boyfriend?</p>
+      <button onclick="moveButton()">Yes</button>
+      <button onclick="moveRandom()">No</button>
+    </div>
+
+    <script>
+      function moveRandom() {
+        const button = document.querySelector("button:last-of-type");
+        const viewportWidth = window.innerWidth - button.offsetWidth;
+        const viewportHeight = window.innerHeight - button.offsetHeight;
+
+        const randomX = Math.floor(Math.random() * viewportWidth);
+        const randomY = Math.floor(Math.random() * viewportHeight);
+
+        button.style.position = "absolute";
+        button.style.left = randomX + "px";
+        button.style.top = randomY + "px";
+      }
+    </script>
   </body>
 </html>
