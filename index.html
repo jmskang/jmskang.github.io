@@ -3,47 +3,64 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Move Button Example</title>
+    <title>Can I be your boyfriend?</title>
     <style>
       body {
         font-family: Arial, sans-serif;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        margin: 0;
+        text-align: center;
+        margin-top: 50px;
       }
       .container {
-        text-align: center;
+        position: relative;
+        width: 100%;
+        height: 400px; /* Adjust height as needed */
       }
-      button {
-        font-size: 16px;
-        padding: 10px 20px;
-        margin: 10px;
+      #yesButton {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 15px 30px;
+        font-size: 18px;
+        background-color: #4caf50;
+        color: white;
+        border: none;
         cursor: pointer;
+        border-radius: 5px;
+      }
+      #noButton {
+        padding: 15px 30px;
+        font-size: 18px;
+        background-color: #f44336;
+        color: white;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
       }
     </style>
   </head>
   <body>
+    <h1>Can I be your boyfriend?</h1>
     <div class="container">
-      <p>Can I be your boyfriend?</p>
-      <button onclick="moveButton()">Yes</button>
-      <button onclick="moveRandom()">No</button>
+      <button id="yesButton">Yes</button>
+      <button id="noButton">No</button>
     </div>
 
     <script>
-      function moveRandom() {
-        const button = document.querySelector("button:last-of-type");
-        const viewportWidth = window.innerWidth - button.offsetWidth;
-        const viewportHeight = window.innerHeight - button.offsetHeight;
+      const noButton = document.getElementById("noButton");
 
-        const randomX = Math.floor(Math.random() * viewportWidth);
-        const randomY = Math.floor(Math.random() * viewportHeight);
+      noButton.addEventListener("click", () => {
+        // Calculate random position
+        const maxWidth = window.innerWidth - noButton.offsetWidth;
+        const maxHeight = window.innerHeight - noButton.offsetHeight - 150;
+        const randomX = Math.floor(Math.random() * maxWidth);
+        const randomY = Math.floor(Math.random() * maxHeight);
 
-        button.style.position = "absolute";
-        button.style.left = randomX + "px";
-        button.style.top = randomY + "px";
-      }
+        // Set new position
+        noButton.style.position = "absolute";
+        noButton.style.left = `${randomX}px`;
+        noButton.style.top = `${randomY}px`;
+      });
     </script>
   </body>
 </html>
