@@ -18,6 +18,11 @@
         width: 100%;
         height: 400px; /* Adjust height as needed */
       }
+      #question {
+        background-color: pink;
+        padding: 10px;
+        border-radius: 8px;
+      }
       #yesButton {
         position: absolute;
         top: 50%;
@@ -42,19 +47,50 @@
         border-radius: 5px;
         position: absolute; /* Ensure it's positioned absolutely */
       }
+      #signedContract {
+        display: none;
+        max-width: 100%;
+        height: auto;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1; /* Ensure it's above other elements */
+      }
+      .overlay-text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, 30%);
+        font-size: 24px;
+        color: white;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+        z-index: 2; /* Ensure it's above other elements */
+        background-color: pink;
+        padding: 10px;
+        border-radius: 8px;
+      }
     </style>
   </head>
   <body>
-    <h1 id="question">Can I be your boyfriend?</h1>
     <div class="container">
+      <h1 id="question">:3 can i be your boyfriend? :)</h1>
       <button id="yesButton">Yes</button>
       <button id="noButton">No</button>
+      <img
+        id="signedContract"
+        src="https://www.dlgva.com/wp-content/uploads/2015/06/iStock_000013752173_Large-scaled.jpg"
+        alt="Signed Contract"
+      />
+      <div id="overlayText" class="overlay-text" hidden="true"></div>
     </div>
 
     <script>
       const yesButton = document.getElementById("yesButton");
       const noButton = document.getElementById("noButton");
       const question = document.getElementById("question");
+      const signedContract = document.getElementById("signedContract");
+      const overlayText = document.getElementById("overlayText");
       const container = document.querySelector(".container");
 
       let clickCount = 0;
@@ -66,10 +102,13 @@
         if (clickCount === 5) {
           question.textContent = "i will buy u lots of snacks";
         } else if (clickCount === 10) {
-          question.textContent = "iLL LET U BEAT me at imESSAGE GAMES";
+          question.textContent =
+            "i will give u lots of love and affection bc u deserve it";
         } else if (clickCount === 15) {
-          question.textContent = "DONT MAKE ME BRING OUT THE 🥺";
+          question.textContent = "iLL LET U BEAT me at imESSAGE GAMES";
         } else if (clickCount === 20) {
+          question.textContent = "DONT MAKE ME BRING OUT THE 🥺";
+        } else if (clickCount === 25) {
           question.textContent =
             "PLEASE PLAES LEASE PLEASE PLEASE PLEASEL PPLEASE PL";
         }
@@ -78,7 +117,7 @@
         const currentSize = parseInt(
           window.getComputedStyle(yesButton).fontSize
         );
-        const newSize = currentSize + 2;
+        const newSize = currentSize + 3;
         yesButton.style.fontSize = `${newSize}px`;
 
         // Calculate random position for noButton
@@ -103,6 +142,19 @@
 
         noButton.style.left = `${randomX}px`;
         noButton.style.top = `${randomY}px`;
+      });
+
+      yesButton.addEventListener("click", () => {
+        // Display the signed contract image
+        signedContract.style.display = "block";
+        overlayText.hidden = false;
+        overlayText.textContent =
+          "ur stuck wit me now you fool but i hope i can make u happy and i hope we make some very good memories together, i love seeing you laugh and i will never get tired of it and you literally make my heart so so full. yhou deserve the best and i rlly hope today turns out okay. i did this in like an hour, the code is genuinely dog shit i haven't written vanilla html and js in literal years. i am literally praying to code jesus that this doesn't bug out or break when you're playing with it";
+
+        // Hide the question and buttons
+        question.style.display = "none";
+        yesButton.style.display = "none";
+        noButton.style.display = "none";
       });
 
       function isOverlap(rect1, rect2) {
